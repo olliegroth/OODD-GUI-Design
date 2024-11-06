@@ -57,8 +57,9 @@ fun conversionApp() {
                 onValueChange = { feet = it },
                 label = { Text("Enter feet: ") }
             )
-            Button(onClick = { meters = feet.toDoubleOrNull()?.times(0.3048) ?: 0.0 }) {
-                Text("Convert to meters")
+            Button(onClick = { meters = feet.toDoubleOrNull()?.times(0.305) ?: 0.0 },
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black)) {
+                Text("Convert to meters", color = Color.Red)
             }
             Text("Meters: $meters")
         }
