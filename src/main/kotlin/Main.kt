@@ -66,12 +66,35 @@ fun conversionApp() {
     }
 }
 
+@Composable
+@Preview
+fun metersToFeetApp() {
+    var meters by remember { mutableStateOf("") }
+    var feet by remember { mutableStateOf(0.0) }
+
+    MaterialTheme {
+        Column {
+            TextField(
+                value = meters,
+                onValueChange = { meters = it },
+                label = { Text("Enter meters: ") }
+            )
+            Button(onClick = { feet = meters.toDoubleOrNull()?.div(0.305) ?: 0.0 },
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black)) {
+                Text("Convert to feet", color = Color.Red)
+            }
+            Text("Feet: $feet")
+        }
+    }
+}
+
 fun main() = application {
     Window(onCloseRequest = ::exitApplication) {
         Column {
             nameEntryApp()
             counterApp()
             conversionApp()
+            metersToFeetApp()
         }
     }
 }
